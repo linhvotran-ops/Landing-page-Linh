@@ -1,1 +1,230 @@
 
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Vũ Trần Anh Linh – Account Manager | GreenNode</title>
+    <style>
+        *{box-sizing: border-box;margin:0;padding:0}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1a1a1a;background:#fff}
+        a{text-decoration:none;color:inherit}
+        .lang-bar{display:flex;justify-content:flex-end;align-items:center;gap:6px;padding:10px 20px;background:#062d14}
+        .lang-btn{background:transparent;border:1px solid rgba(255,255,255,0.3);color:rgba(255,255,255,0.6);padding:4px 12px;border-radius:20px;font-size:12px;cursor:pointer;transition:all .2s}
+        .lang-btn.active{background:rgba(255,255,255,0.15);color:#fff;border-color:rgba(255,255,255,0.7)}
+        .hero{background:linear-gradient(140deg,#062d14 0%,#0a4a22 55%,#116b30 100%);padding:3rem 1.5rem 2.75rem;text-align:center;position:relative;overflow:hidden}
+        .hero::before{content:'';position:absolute;top:-80px;right:-80px;width:280px;height:280px;border-radius:50%;background:rgba(255,255,255,0.04)}
+        .hero::after{content:'';position:absolute;bottom:-50px;left:-50px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,0.04)}
+        .avatar-wrap{position:relative;display:inline-block;margin-bottom:1.25rem}
+        .avatar-wrap img{width:110px;height:110px;border-radius:50%;object-fit:cover;object-position:top;border:3px solid rgba(255,255,255,0.5);display:block;cursor:pointer}
+        .badge-gn{position:absolute;bottom:2px;right:2px;background:#22c55e;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;border:2px solid #062d14;font-size:11px;color:#fff;font-weight:700}
+        .hero h1{font-size:24px;font-weight:600;color:#fff;margin-bottom:4px}
+        .hero .role{font-size:13px;color:rgba(255,255,255,0.65);margin-bottom:1.25rem;display:flex;align-items:center;justify-content:center;gap:6px}
+        .hero .role a{color:#6ee89e}
+        .hero .tagline{font-size:15px;color:rgba(255,255,255,0.85);max-width:460px;margin:0 auto 1.75rem;line-height:1.65}
+        .cta-group{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+        .btn-p{background:#22c55e;color:#fff;border:none;padding:11px 22px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+        .btn-o{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,0.4);padding:11px 22px;border-radius:8px;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+        .wrap{max-width:700px;margin:0 auto;padding:2.5rem 1.5rem}
+        .sec-label{font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:#16a34a;font-weight:600;margin-bottom:6px}
+        .sec-title{font-size:20px;font-weight:600;margin-bottom:1rem}
+        .divider{border:none;border-top:1px solid #f0f0f0;margin:0}
+        .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:1.25rem}
+        @media(max-width:500px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
+        .stat-c{background:#f6fdf8;border-radius:10px;padding:14px 10px;text-align:center}
+        .stat-c .n{font-size:22px;font-weight:700;color:#15803d}
+        .stat-c .l{font-size:11px;color:#666;margin-top:2px}
+        .srv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-top:1rem}
+        .srv-card{background:#fff;border:1px solid #e8f5ee;border-radius:12px;padding:1rem}
+        .srv-icon{width:36px;height:36px;border-radius:8px;background:#dcfce7;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:20px}
+        .srv-card h3{font-size:13px;font-weight:600;margin-bottom:4px;color:#1a1a1a}
+        .srv-card p{font-size:12px;color:#666;line-height:1.5}
+        .clients-list{display:flex;flex-direction:column;gap:14px;margin-top:1rem}
+        .client-card{background:#fff;border:1px solid #e8e8e8;border-radius:12px;padding:1.1rem 1.25rem}
+        .client-head{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+        .c-logo{width:42px;height:42px;border-radius:8px;background:#f0fdf4;border:1px solid #d1fae5;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#15803d;text-align:center;line-height:1.3;flex-shrink:0}
+        .c-name{font-size:14px;font-weight:600}
+        .c-ind{font-size:11px;color:#888;margin-top:1px}
+        .c-desc{font-size:13px;color:#555;line-height:1.65;margin-bottom:10px}
+        .metrics{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:8px}
+        .metric .v{font-size:15px;font-weight:700;color:#15803d}
+        .metric .k{font-size:11px;color:#888}
+        .tags{display:flex;gap:6px;flex-wrap:wrap}
+        .tag{font-size:11px;padding:3px 9px;border-radius:20px;background:#f0fdf4;color:#166534;border:1px solid #bbf7d0}
+        .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:1rem}
+        .why-c{background:#f6fdf8;border-radius:10px;padding:1rem}
+        .why-c .wi{font-size:22px;margin-bottom:8px}
+        .why-c h3{font-size:13px;font-weight:600;margin-bottom:4px;color:#1a1a1a}
+        .why-c p{font-size:12px;color:#666;line-height:1.5}
+        .contact-box{background:#fff;border:1px solid #e8e8e8;border-radius:12px;padding:1.25rem;margin-top:1rem}
+        .crow{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+        .ci{width:32px;height:32px;border-radius:8px;background:#f0fdf4;display:flex;align-items:center;justify-content:center;font-size:16px}
+        .clbl{font-size:12px;color:#888;width:70px;flex-shrink:0}
+        .cval{font-size:14px;color:#1a1a1a}
+        .cval a{color:#15803d;text-decoration:none}
+        .footer{text-align:center;padding:1.5rem;font-size:12px;color:#aaa;border-top:1px solid #f0f0f0}
+    </style>
+</head>
+<body>
+
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('vi')" id="btn-vi">🇻🇳 Tiếng Việt</button>
+  <button class="lang-btn" onclick="setLang('en')" id="btn-en">🇺🇸 English</button>
+</div>
+
+<div class="hero">
+  <div class="avatar-wrap">
+    <img id="avatar-img" src="avatar.jpg.jpg" alt="Vũ Trần Anh Linh">
+    <div class="badge-gn">GN</div>
+  </div>
+  <h1>Vũ Trần Anh Linh</h1>
+  <div class="hero role">
+    <span data-vi="Account Manager" data-en="Account Manager">Account Manager</span>
+    &nbsp;&nbsp;
+    <a href="https://greennode.ai" target="_blank">GreenNode 🚀</a>
+  </div>
+  <p class="hero tagline" data-vi="7 năm kinh nghiệm trong lĩnh vực doanh nghiệp và vận hành AI Cloud – từ startup đến enterprise. Tôi giúp bạn tìm ra giải pháp tối ưu, fastest." data-en="7 years helping businesses optimize AI Cloud infrastructure – from startups to enterprises. I help you find the right solution, faster.">
+    7 năm kinh nghiệm trong lĩnh vực doanh nghiệp và vận hành AI Cloud – từ startup đến enterprise. Tôi giúp bạn tìm ra giải pháp tối ưu, fastest.
+  </p>
+  <div class="cta-group">
+    <a class="btn-p" href="mailto:linhvta@greennode.ai" data-vi="Liên hệ ngay" data-en="Contact me">📩 Liên hệ ngay</a>
+    <a class="btn-o" href="https://greennode.ai" target="_blank" data-vi="Xem GreenNode" data-en="Visit GreenNode">🌐 Xem GreenNode</a>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="sec-label" data-vi="Giới thiệu" data-en="About me">Giới thiệu</div>
+  <div class="sec-title" data-vi="7 năm trong Cloud & AI" data-en="7 years in Cloud & AI">7 năm trong Cloud & AI</div>
+  <p style="font-size:14px;color:#555;line-height:1.75" data-vi="Với hơn 7 năm kinh nghiệm trong lĩnh vực cloud computing và AI, tôi đã xây dựng và triển khai nhiều hệ thống quy mô lớn cho các doanh nghiệp. Sự kết hợp giữa tư duy kỹ thuật và quản trị vận hành giúp tôi tối ưu hóa hiệu quả chi phí cho khách hàng mà vẫn đảm bảo hiệu suất tối đa." data-en="With over 7 years of experience in cloud computing and AI account management, I have supported hundreds of businesses across Vietnam and Southeast Asia in their digital transformation journey. I currently work at <strong>GreenNode</strong> – a high-performance AI Cloud platform trusted by 1000+ businesses.">
+    Với hơn 7 năm kinh nghiệm trong lĩnh vực cloud computing và AI, tôi đã xây dựng và triển khai nhiều hệ thống quy mô lớn cho các doanh nghiệp. Sự kết hợp giữa tư duy kỹ thuật và quản trị vận hành giúp tôi tối ưu hóa hiệu quả chi phí cho khách hàng mà vẫn đảm bảo hiệu suất tối đa.
+  </p>
+  <div class="stats-grid">
+    <div class="stat-c"><div class="n">7+</div><div class="l" data-vi="Năm kinh nghiệm" data-en="Years of experience">Năm kinh nghiệm</div></div>
+    <div class="stat-c"><div class="n">1000+</div><div class="l" data-vi="Khách hàng" data-en="Clients advised">Khách hàng</div></div>
+    <div class="stat-c"><div class="n">1000+</div><div class="l" data-vi="KH GreenNode" data-en="GreenNode clients">KH GreenNode</div></div>
+    <div class="stat-c"><div class="n">24/7</div><div class="l" data-vi="Hỗ trợ sẵn sàng" data-en="Support available">Hỗ trợ sẵn sàng</div></div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<div class="wrap">
+  <div class="sec-label" data-vi="Giải pháp" data-en="Solutions">Giải pháp</div>
+  <div class="sec-title" data-vi="Tôi có thể giúp bạn" data-en="How I can help you">Tôi có thể giúp bạn</div>
+  <div class="srv-grid">
+    <div class="srv-card"><div class="srv-icon">⚡</div><h3>GPU Cloud</h3><p data-vi="H100 GPU tối ưu AI/ML workloads, từ $2.34/giờ" data-en="H100 GPU optimized for AI/ML workloads, from $2.34/hr">H100 GPU tối ưu AI/ML workloads, từ $2.34/giờ</p></div>
+    <div class="srv-card"><div class="srv-icon">🤖</div><h3>AI Platform</h3><p data-vi="Train, fine-tune, deploy & quản lý AI models theo quy mô" data-en="Train, fine-tune, deploy & manage AI models at scale">Train, fine-tune, deploy & quản lý AI models theo quy mô</p></div>
+    <div class="srv-card"><div class="srv-icon">📦</div><h3>Object Storage</h3><p data-vi="Lưu trữ object, file, block an toàn, hiệu suất cao" data-en="High-speed, secure object, file & block storage">Lưu trữ object, file, block an toàn, hiệu suất cao</p></div>
+    <div class="srv-card"><div class="srv-icon">🌐</div><h3>Managed Services</h3><p data-vi="Quản trị hạ tầng cloud 24/7" data-en="Expert team operating & optimizing your cloud 24/7">Quản trị hạ tầng cloud 24/7</p></div>
+    <div class="srv-card"><div class="srv-icon">🛠️</div><h3>Kubernetes (VKS)</h3><p data-vi="Quản lý K8s cho container orchestration hiệu quả" data-en="Managed K8s for efficient container orchestration">Quản lý K8s cho container orchestration hiệu quả</p></div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<div class="wrap">
+  <div class="sec-label" data-vi="Dự án tiêu biểu" data-en="Featured projects">Dự án tiêu biểu</div>
+  <div class="sec-title" data-vi="Cách cùng nhà bài tập" data-en="Notable clients & deployments">Cách cùng nhà bài tập</div>
+  <div class="clients-list">
+    <div class="client-card">
+      <div class="client-head"><div class="c-logo">FE<br>CREDIT</div><div><div class="c-name">FE Credit</div><div class="c-ind" data-vi="Tài chính tiêu dùng" data-en="Consumer Finance">Tài chính tiêu dùng</div></div></div>
+      <p class="c-desc" data-vi="Vận hành hệ thống mission-critical, đảm bảo tuân thủ quy chuẩn tài chính và tối ưu hóa vận hành IT cho một trong những công ty tài chính hàng đầu." data-en="Running mission-critical systems, ensuring regulatory compliance and optimizing IT operations across the nationwide network.">Vận hành hệ thống mission-critical, đảm bảo tuân thủ quy chuẩn tài chính và tối ưu hóa vận hành IT cho một trong những công ty tài chính hàng đầu.</p>
+      <div class="metrics">
+        <div class="metric"><div class="v">14M+</div><div class="k" data-vi="Khách hàng phục vụ" data-en="Customers served">Khách hàng phục vụ</div></div>
+        <div class="metric"><div class="v">21,000</div><div class="k" data-vi="Điểm giao dịch" data-en="Stable service points">Điểm giao dịch</div></div>
+      </div>
+      <div class="tags"><span class="tag">Cloud Infrastructure</span><span class="tag">Compliance</span><span class="tag">IT Operations</span></div>
+    </div>
+    <div class="client-card">
+      <div class="client-head"><div class="c-logo">IDP<br>Bank</div><div><div class="c-name">Ngân hàng Việt Nam</div><div class="c-ind" data-vi="Ngân hàng" data-en="Banking">Ngân hàng</div></div></div>
+      <p class="c-desc" data-vi="Triển khai hệ thống xử lý đa luồng tự động cho quy trình IDP OCR, giảm thời gian xử lý bởi hơn 90%." data-en="Automated processing of millions of complex banking documents using AI-powered IDP OCR, reducing processing time by over 90%.">Triển khai hệ thống xử lý đa luồng tự động cho quy trình IDP OCR, giảm thời gian xử lý bởi hơn 90%.</p>
+      <div class="metrics">
+        <div class="metric"><div class="v">150M+</div><div class="k" data-vi="Tài liệu xử lý" data-en="Documents auto-processed">Tài liệu xử lý</div></div>
+        <div class="metric"><div class="v">90%</div><div class="k" data-vi="Giảm thời gian" data-en="Reduction in processing time">Giảm thời gian</div></div>
+      </div>
+      <div class="tags"><span class="tag">IDP / OCR</span><span class="tag">AI Automation</span><span class="tag">Document Processing</span></div>
+    </div>
+    <div class="client-card">
+      <div class="client-head"><div class="c-logo">ACFC<br>VFBS</div><div><div class="c-name">ACFC & VFBS</div><div class="c-ind" data-vi="Bán lẻ thời trang & F&B" data-en="Fashion Retail & F&B">Bán lẻ thời trang & F&B</div></div></div>
+      <p class="c-desc" data-vi="Vận hành gần 300 cửa hàng trên toàn quốc, hỗ trợ POS, ERP, HRM và reporting thời gian thực." data-en="Operating nearly 300 stores on a stable cloud platform, unifying POS, ERP, HRM and reporting across all brand systems.">Vận hành gần 300 cửa hàng trên toàn quốc, hỗ trợ POS, ERP, HRM và reporting thời gian thực.</p>
+      <div class="metrics">
+        <div class="metric"><div class="v">350+</div><div class="k" data-vi="POS vận hành" data-en="Stable POS systems">POS vận hành</div></div>
+        <div class="metric"><div class="v">25</div><div class="k" data-vi="Thương hiệu & chuỗi F&B" data-en="Brands & F&B chains">Thương hiệu & chuỗi F&B</div></div>
+      </div>
+      <div class="tags"><span class="tag">Retail Cloud</span><span class="tag">POS / ERP</span><span class="tag">Multi-brand</span></div>
+    </div>
+    <div class="client-card">
+      <div class="client-head"><div class="c-logo">NEYU</div><div><div class="c-name">Neyu</div><div class="c-ind" data-vi="Теlesales & BPO" data-en="Telesales & BPO">Теlesales & BPO</div></div></div>
+      <p class="c-desc" data-vi="Triển khai hệ thống telesales 1000+ agent trên 7+ quốc gia, thay thế vendor SEA với setup vận hành cực kỳ nhanh." data-en="Deployed telesales infrastructure for 1000+ agents across 7+ countries, replacing legacy SEA vendors with superior setup speed and call quality.">Triển khai hệ thống telesales 1000+ agent trên 7+ quốc gia, thay thế vendor SEA với setup vận hành cực kỳ nhanh.</p>
+      <div class="metrics">
+        <div class="metric"><div class="v">2-3 <span data-vi="ngày" data-en="days">ngày</span></div><div class="k" data-vi="Thời gian triển khai" data-en="Setup time">Thời gian triển khai</div></div>
+        <div class="metric"><div class="v">1000+</div><div class="k" data-vi="Agent scale ngay lập tức" data-en="Agents scaled instantly">Agent scale ngay lập tức</div></div>
+      </div>
+      <div class="tags"><span class="tag">AI Platform</span><span class="tag">Kubernetes</span><span class="tag">PaaS</span></div>
+    </div>
+    <div class="client-card">
+      <div class="client-head"><div class="c-logo">SOTA<br>TEK</div><div><div class="c-name">SotaTek / Sotabox.ai</div><div class="c-ind" data-vi="Software & AI Technology" data-en="Software & AI Technology">Software & AI Technology</div></div></div>
+      <p class="c-desc" data-vi="Deploy toàn bộ nền tảng AI Sotabox.ai trong 1 tháng, giảm 30% chi phí DevOps và tăng tốc time-to-market cho sản phẩm AI." data-en="Deployed the entire Sotabox.ai platform in 1 month, reducing DevOps costs by 30% and accelerating time-to-market for their global AI product.">Deploy toàn bộ nền tảng AI Sotabox.ai trong 1 tháng, giảm 30% chi phí DevOps và tăng tốc time-to-market cho sản phẩm AI.</p>
+      <div class="metrics">
+        <div class="metric"><div class="v">1 <span data-vi="tháng" data-en="month">tháng</span></div><div class="k" data-vi="Deploy & vận hành" data-en="Deploy & operate">Deploy & vận hành</div></div>
+        <div class="metric"><div class="v">30%</div><div class="k" data-vi="Giảm chi phí DevOps" data-en="DevOps cost reduction">Giảm chi phí DevOps</div></div>
+      </div>
+      <div class="tags"><span class="tag">AI Platform</span><span class="tag">Kubernetes</span><span class="tag">PaaS</span></div>
+    </div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<div class="wrap">
+  <div class="sec-label" data-vi="Tại sao chọn GreenNode" data-en="Why GreenNode">Tại sao chọn GreenNode</div>
+  <div class="sec-title" data-vi="Sở hữu lợi thế đột phá" data-en="Infrastructure you can trust">Sở hữu lợi thế đột phá</div>
+  <div class="why-grid">
+    <div class="why-c"><div class="wi">🎯</div><h3>6 Availability zones</h3><p data-vi="Hỗ trợ TP.HCM, Bangkok – latency thấp, tuân thủ pháp lý" data-en="Hanoi, HCM, Bangkok – low latency, local compliance">Hỗ trợ TP.HCM, Bangkok – latency thấp, tuân thủ pháp lý</p></div>
+    <div class="why-c"><div class="wi">🛡️</div><h3>Bảo mật & Compliance</h3><p data-vi="Tuân thủ quy chuẩn Việt Nam và Thái Lan" data-en="Meets regulatory requirements in Vietnam and Thailand">Tuân thủ quy chuẩn Việt Nam và Thái Lan</p></div>
+    <div class="why-c"><div class="wi">⚡</div><h3>Hỗ trợ 24/7</h3><p data-vi="Đội ngũ kỹ thuật luôn sẵn sàng hỗ trợ" data-en="Technical experts always ready to assist you">Đội ngũ kỹ thuật luôn sẵn sàng hỗ trợ</p></div>
+    <div class="why-c"><div class="wi">📈</div><h3>Scale linh hoạt</h3><p data-vi="Startup enterprise, dễ dàng nâng cấp theo nhu cầu" data-en="From startups to enterprise, scale easily as you grow">Startup enterprise, dễ dàng nâng cấp theo nhu cầu</p></div>
+  </div>
+</div>
+<hr class="divider"/>
+
+<div class="wrap">
+  <div class="sec-label" data-vi="Liên hệ" data-en="Contact">Liên hệ</div>
+  <div class="sec-title" data-vi="Sẵn sàng tư vấn cho bạn" data-en="Ready to advise you">Sẵn sàng tư vấn cho bạn</div>
+  <p style="font-size:14px;color:#555;line-height:1.7" data-vi="Để biết thêm chi tiết hãy để lại thông tin hoặc nhắn cho tôi trực tiếp thông qua Zalo/Linkedin trong vòng 24 giờ." data-en="Whether you're exploring options or ready to deploy – reach out and I'll respond within 24 hours.">Để biết thêm chi tiết hãy để lại thông tin hoặc nhắn cho tôi trực tiếp thông qua Zalo/Linkedin trong vòng 24 giờ.</p>
+  <div class="contact-box">
+    <div class="crow"><div class="ci">✉️</div><span class="clbl">Email</span><span class="cval"><a href="mailto:linhvta@greennode.ai">linhvta@greennode.ai</a></span></div>
+    <div class="crow"><div class="ci">📞</div><span class="clbl">Điện thoại</span><span class="cval"><a href="tel:+840978405167">(+84) 0978 405 167</a></span></div>
+    <div class="crow"><div class="ci">💬</div><span class="clbl">Zalo</span><span class="cval"><a href="https://zalo.me/0978405167" target="_blank">0978 405 167</a></span></div>
+    <div class="crow"><div class="ci">🔗</div><span class="clbl">LinkedIn</span><span class="cval"><a href="https://www.linkedin.com/in/linhvta" target="_blank">linkedin.com/in/linhvta</a></span></div>
+  </div>
+</div>
+
+<div class="footer">
+  © 2025 Vũ Trần Anh Linh – Account Manager <a href="https://greennode.ai" target="_blank">GreenNode</a>
+</div>
+
+<script>
+(function(){
+  const img = document.getElementById('avatar-img');
+  const inp = document.createElement('input');
+  inp.type='file'; inp.accept='image/*'; inp.style.display='none';
+  document.body.appendChild(inp);
+  img.addEventListener('click',()=>inp.click());
+  inp.addEventListener('change',e=>{
+    const f=e.target.files[0]; if(!f) return;
+    const r=new FileReader();
+    r.onload=ev=> {img.src=ev.target.result;};
+    r.readAsDataURL(f);
+  });
+})();
+
+function setLang(lang){
+  document.querySelectorAll('[data-vi]').forEach(el=>{
+    const val = el.getAttribute('data-'+lang);
+    if(val) el.innerHTML = val;
+  });
+  document.getElementById('btn-vi').classList.toggle('active', lang==='vi');
+  document.getElementById('btn-en').classList.toggle('active', lang==='en');
+  document.documentElement.lang = lang;
+}
+</script>
+</body>
+</html>
